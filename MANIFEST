@@ -1,0 +1,9 @@
+./t/functest.rb
+./t/timetest.rb
+./Makefile
+./README.en
+./extconf.rb
+./strongtyping.c
+./LGPL
+./MANIFEST
+./strongtyping.h
