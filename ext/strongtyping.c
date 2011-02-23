@@ -60,7 +60,7 @@ static VALUE strongtyping_expect(int argc, VALUE *argv, VALUE self UNUSED) {
 
   if(rb_funcall(obj[0], id_isa, 1, cQueryParams)) {
     rb_funcall(obj[0], rb_intern("<<"), 1, rb_ary_new4(argc/2, mod));
-    rb_raise(eArgList, ""); // TODO: Why an empty string? Causes a warning.
+    rb_raise(eArgList, ""); // TODO: Why an empty string? Causes a warning in 1.9.x.
   }
     
   i = check_args(argc / 2, obj, mod);
@@ -78,96 +78,103 @@ static VALUE strongtyping_expect(int argc, VALUE *argv, VALUE self UNUSED) {
   );
 }
 
-static VALUE
-strongtyping_overload(int argc, VALUE *argv, VALUE self UNUSED) {
-    struct RArray *q;
+static VALUE strongtyping_overload(int argc, VALUE *argv, VALUE self UNUSED) {
+  struct RArray *q;
     
-    if(argc < 1)
-        rb_raise(rb_eArgError, "At least one parameter required");
+  if(argc < 1)
+    rb_raise(rb_eArgError, "At least one parameter required");
 
-    Check_Type(argv[0], T_ARRAY);
-    q = RARRAY(argv[0]);
+  Check_Type(argv[0], T_ARRAY);
+  q = RARRAY(argv[0]);
 
-    if(RARRAY_LEN(q) && rb_funcall(RARRAY_PTR(q)[0], id_isa, 1, cQueryParams)) {
-        rb_funcall(RARRAY_PTR(q)[0], rb_intern("<<"), 1,
-                   rb_ary_new4(argc - 1, argv + 1));
-        return Qnil;
-    }
-
-    if(RARRAY_LEN(q) != (argc - 1))
-        return Qnil;
-
-    if(check_args(argc - 1, RARRAY_PTR(q), argv + 1) < 0) {
-        if(argc == 2) rb_yield(*RARRAY_PTR(*argv));
-        else          rb_yield(*argv);
-    }
-
+  if(RARRAY_LEN(q) && rb_funcall(RARRAY_PTR(q)[0], id_isa, 1, cQueryParams)) {
+    rb_funcall(RARRAY_PTR(q)[0], rb_intern("<<"), 1, rb_ary_new4(argc - 1, argv + 1));
     return Qnil;
-}
+  }
 
-static VALUE
-strongtyping_overload_exception(int argc, VALUE *argv, VALUE self UNUSED) {
-    struct RArray *q;
-    
-    if(argc < 1)
-        rb_raise(rb_eArgError, "At least one parameters required");
-
-    Check_Type(argv[0], T_ARRAY);
-    q = RARRAY(argv[0]);
-
-    if(RARRAY_LEN(q) && (argc - 1) == 0)
-        return Qnil;
-
-    if(check_args(argc - 1, RARRAY_PTR(q), argv + 1) < 0)
-        rb_yield(argv[0]);
-
+  if(RARRAY_LEN(q) != (argc - 1))
     return Qnil;
+
+  if(check_args(argc - 1, RARRAY_PTR(q), argv + 1) < 0){
+    if(argc == 2)
+      rb_yield(*RARRAY_PTR(*argv));
+    else
+      rb_yield(*argv);
+  }
+
+  return Qnil;
 }
 
-static VALUE
-strongtyping_overload_error(VALUE self UNUSED, VALUE args) {
-    struct  RArray *q;
-    VALUE           classlist;
-    char           *name = 0;
-    int             i    = 0;
+static VALUE strongtyping_overload_exception(int argc, VALUE *argv, VALUE self UNUSED) {
+  struct RArray *q;
     
-    Check_Type(args, T_ARRAY);
-    q = RARRAY(args);
-    
-    if(RARRAY_LEN(q) && rb_funcall(RARRAY_PTR(q)[0], id_isa, 1, cQueryParams))
-        rb_raise(eArgList, "");
+  if(argc < 1)
+    rb_raise(rb_eArgError, "At least one parameters required");
 
-    classlist = rb_str_new2("");
-    for(i = 0; i < RARRAY_LEN(q); i++) {
-        if(i > 0) rb_str_cat(classlist, ", ", 2);
-        name = rb_class2name(rb_funcall(RARRAY_PTR(q)[i], id_class, 0));
-        rb_str_cat(classlist, name, strlen(name));
-    }
-    rb_raise(eOverloadError, "No matching template for arguments: [%s]",
-             RSTRING_PTR(classlist));
+  Check_Type(argv[0], T_ARRAY);
+  q = RARRAY(argv[0]);
+
+  if(RARRAY_LEN(q) && (argc - 1) == 0)
+    return Qnil;
+
+  if(check_args(argc - 1, RARRAY_PTR(q), argv + 1) < 0)
+    rb_yield(argv[0]);
+
+  return Qnil;
 }
 
-static int
-check_args(int argc, VALUE *obj, VALUE *mod) {
-    int i = 0;
-    VALUE ret;
+static VALUE strongtyping_overload_error(VALUE self UNUSED, VALUE args) {
+  struct  RArray *q;
+  VALUE           classlist;
+  char           *name = 0;
+  int             i    = 0;
     
-    for(i = 0; i < argc; i++) {
-        if(TYPE(mod[i]) == T_ARRAY) {
-            int j = 0, ok = 0;
-            for(j = 0; j < RARRAY_LEN(mod[i]); j++)
-                if(rb_funcall(obj[i], id_isa, 1, RARRAY_PTR(mod[i])[j]) == Qtrue)
-                    ok = 1;
+  Check_Type(args, T_ARRAY);
+  q = RARRAY(args);
+    
+  if(RARRAY_LEN(q) && rb_funcall(RARRAY_PTR(q)[0], id_isa, 1, cQueryParams))
+    rb_raise(eArgList, "");
 
-            if(ok) continue;
-            else   return i;
-        } else {
-            ret = rb_funcall(obj[i], id_isa, 1, mod[i]);
-            if(ret == Qfalse) return i;
-        }
+  classlist = rb_str_new2("");
+
+  for(i = 0; i < RARRAY_LEN(q); i++) {
+    if(i > 0) rb_str_cat(classlist, ", ", 2);
+    name = rb_class2name(rb_funcall(RARRAY_PTR(q)[i], id_class, 0));
+    rb_str_cat(classlist, name, strlen(name));
+  }
+
+  rb_raise(
+    eOverloadError,
+    "No matching template for arguments: [%s]",
+    RSTRING_PTR(classlist)
+  );
+}
+
+static int check_args(int argc, VALUE *obj, VALUE *mod) {
+  int i = 0;
+  VALUE ret;
+    
+  for(i = 0; i < argc; i++){
+    if(TYPE(mod[i]) == T_ARRAY){
+      int j = 0, ok = 0;
+
+      for(j = 0; j < RARRAY_LEN(mod[i]); j++){
+        if(rb_funcall(obj[i], id_isa, 1, RARRAY_PTR(mod[i])[j]) == Qtrue)
+          ok = 1;
+      }
+
+      if(ok)
+        continue;
+      else
+        return i;
     }
+    else{
+      ret = rb_funcall(obj[i], id_isa, 1, mod[i]);
+      if(ret == Qfalse) return i;
+    }
+  }
 
-    return -1;
+  return -1;
 }
 
 static VALUE call_method(VALUE ary) {
