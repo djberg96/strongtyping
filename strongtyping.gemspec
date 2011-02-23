@@ -1,24 +1,22 @@
 require 'rubygems'
 
-spec = Gem::Specification.new do |gem|
-   gem.name         = 'strongtyping'
-   gem.version      = '2.0.6'
-   gem.author       = 'Ryan Pavlik'
-   gem.email        = 'rpav@mephle.com'
-   gem.homepage     = 'http://mephle.org/StrongTyping/'
-   gem.platform     = Gem::Platform::RUBY
-   gem.summary      = 'Ruby module that provides type checking and method overloading'
-   gem.description  = 'Ruby module that provides type checking and method overloading'
-   gem.test_files   = Dir['t/*.rb']
-   gem.has_rdoc     = false
-   gem.extra_rdoc_files  = ['LGPL', 'README.en', 'MANIFEST']
-   gem.rubyforge_project = 'shards'
-   gem.files = Dir['*']
-   gem.required_ruby_version = '>= 1.8.0'
-   gem.extensions = ['extconf.rb']
-end
+Gem::Specification.new do |spec|
+  spec.name         = 'strongtyping'
+  spec.version      = '2.0.7'
+  spec.authors      = ['Ryan Pavlik', 'Daniel Berger']
+  spec.email        = 'rpav@mephle.com'
+  spec.homepage     = 'http://mephle.org/StrongTyping/'
+  spec.summary      = 'A Ruby library that provides type checking and method overloading'
+  spec.test_files   = Dir['test/*.rb']
+  spec.has_rdoc     = false
+  spec.files        = Dir['**/*'].reject{ |f| f.include?('git') }
+  spec.extensions   = ['extconf.rb']
 
-if $0 == __FILE__
-   Gem.manage_gems
-   Gem::Builder.new(spec).build
+  spec.extra_rdoc_files  = ['LGPL', 'README', 'MANIFEST']
+  spec.rubyforge_project = 'shards'
+
+  spec.description = %Q{
+    The strongtyping gem is a Ruby library that provides type checking and
+    method overloading.
+  }
 end
