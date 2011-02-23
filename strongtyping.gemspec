@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.test_files   = Dir['test/*.rb']
   spec.has_rdoc     = false
   spec.files        = Dir['**/*'].reject{ |f| f.include?('git') }
-  spec.extensions   = ['extconf.rb']
+  spec.extensions   = ['ext/extconf.rb']
 
   spec.extra_rdoc_files  = ['LGPL', 'README', 'MANIFEST']
   spec.rubyforge_project = 'shards'
