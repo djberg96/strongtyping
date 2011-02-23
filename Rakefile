@@ -4,7 +4,15 @@ require 'rake/testtask'
 require 'rbconfig'
 include Config
 
-CLEAN.include("**/*.gem", "**/*.rbc")
+CLEAN.include(
+  '**/*.gem',               # Gem files
+  '**/*.rbc',               # Rubinius
+  '**/*.o',                 # C object file
+  '**/*.log',               # Ruby extension build log
+  '**/Makefile',            # C Makefile
+  '**/conftest.dSYM',       # OS X build directory
+  "**/*.#{CONFIG['DLEXT']}" # C shared object
+)
 
 desc "Build the strongtyping source"
 task :build => [:clean] do
