@@ -126,7 +126,7 @@ static VALUE strongtyping_overload_exception(int argc, VALUE *argv, VALUE self U
 static VALUE strongtyping_overload_error(VALUE self UNUSED, VALUE args) {
   struct  RArray *q;
   VALUE           classlist;
-  char           *name = 0;
+  const char      *name = 0;
   int             i    = 0;
     
   Check_Type(args, T_ARRAY);
@@ -138,7 +138,9 @@ static VALUE strongtyping_overload_error(VALUE self UNUSED, VALUE args) {
   classlist = rb_str_new2("");
 
   for(i = 0; i < RARRAY_LEN(q); i++) {
-    if(i > 0) rb_str_cat(classlist, ", ", 2);
+    if(i > 0)
+      rb_str_cat(classlist, ", ", 2);
+
     name = rb_class2name(rb_funcall(RARRAY_PTR(q)[i], id_class, 0));
     rb_str_cat(classlist, name, strlen(name));
   }
