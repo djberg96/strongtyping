@@ -249,6 +249,9 @@ void Init_strongtyping() {
     id_class      = rb_intern("class");
     id_inspect    = rb_intern("inspect");
 
+    /* 2.0.7: The version of the strongtyping library */
+    rb_define_const(mStrongTyping, "VERSION", rb_str_new2("2.0.7"));
+
     cQueryParams       = rb_define_class_under(mStrongTyping,
                                                "%QueryParams",
                                                rb_cArray);

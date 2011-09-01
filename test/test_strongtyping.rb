@@ -3,6 +3,10 @@ require 'strongtyping'
 include StrongTyping
 
 class TS_StrongTyping < Test::Unit::TestCase
+  def test_version
+    assert_equal('2.0.7', StrongTyping::VERSION)
+  end
+
   def test_expect
     assert_raises(ArgumentTypeError) {
       foo("hello", 2, 3)

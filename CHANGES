@@ -2,6 +2,7 @@
 * Code reorganized, Rakefile added, CHANGES file added.
 * Updated gemspec. Removed old has_rdoc call, added license.
 * Fixes for 1.9.x. Still some warnings but harmless.
+* Added a StrongTyping::VERSION constant.
 
 == 2.0.6b
 * Bugfix: Shouldn't get "too many arguments" on gcc any more.
