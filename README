@@ -18,7 +18,7 @@
   should be Numeric:
 
     require 'strongtyping'
-    include strongtyping
+    include StrongTyping
 
     def foo(a, b)
       expect(a, String, b, Numeric)
@@ -30,7 +30,7 @@
   Overloading is just as easy:
 
     require 'strongtyping'
-    include strongtyping
+    include StrongTyping
 
     def bar(*args)
       overload(args, String, String){ |s1,s2|
@@ -88,7 +88,7 @@
     end
 
 = Reference
-  Module: strongtyping
+  Module: StrongTyping
 
   Methods:
   
