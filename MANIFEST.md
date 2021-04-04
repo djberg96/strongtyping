@@ -1,11 +1,11 @@
-CHANGES.md
-LGPL
-MANIFEST.md
-README.md
-Rakefile
-strongtyping.gemspec
-ext/extconf.rb
-ext/strongtyping.c
-ext/strongtyping.h
-test/functest.rb
-test/timetest.rb
+* CHANGES.md
+* LGPL
+* MANIFEST.md
+* README.md
+* Rakefile
+* strongtyping.gemspec
+* ext/extconf.rb
+* ext/strongtyping.c
+* ext/strongtyping.h
+* test/functest.rb
+* test/timetest.rb
