@@ -14,7 +14,7 @@ a number of different templates.
 ## Synopsis
 Let's say you have the following function:
 
-```
+```ruby
 def foo(a, b)
   ...
 end
@@ -23,7 +23,7 @@ end
 Now let's say this function wants 'a' to always be a String, and 'b'
 should be Numeric:
 
-```
+```ruby
 require 'strongtyping'
 include StrongTyping
 
