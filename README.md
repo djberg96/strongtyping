@@ -295,7 +295,7 @@ A: First, what you're suggesting is evil. If you want that, go
      def setSize(*args)
        overload(args, Integer) { |r|
          @radius = r
-           return
+         return
        }
 
        overload_exception(args, Integer, Integer) { |a,b|
