@@ -180,13 +180,13 @@ A: This is incorrect thinking. Allowing errors to just occur when
    they happen is naive programming. Consider the following:
 
 ```ruby
-     # Wait N seconds, then open the bridge for M seconds
-     def sendMsg(bridge, n, m)
-       sleep(n)
-       bridge.open
-       sleep(m)
-       bridge.close
-     end
+   # Wait N seconds, then open the bridge for M seconds
+   def sendMsg(bridge, n, m)
+     sleep(n)
+     bridge.open
+     sleep(m)
+     bridge.close
+   end
 ```
 
    Now say 'm' is pased in as a string. Oops! A TypeError is
@@ -251,10 +251,10 @@ A: First, what you're suggesting is evil. If you want that, go
    methods at any time:
 
 ```ruby
-     a = String.new;
-     def a.split
-       print "hello world\n"
-     end
+   a = String.new;
+   def a.split
+     print "hello world\n"
+   end
 ```
 
    For this, I have two responses:  first, if a method is deprecated
@@ -262,11 +262,11 @@ A: First, what you're suggesting is evil. If you want that, go
    know:
 
 ```ruby
-      a = String.new;
-      def a.split(*args)
-         overload(args) { print "hello world\n" }
-         overload_default args
-      end
+   a = String.new;
+   def a.split(*args)
+     overload(args) { print "hello world\n" }
+     overload_default args
+   end
 ```
 
    This case will drop any normal calls through to overload_default,
@@ -291,35 +291,31 @@ A: First, what you're suggesting is evil. If you want that, go
    provides a useful function, overload_exception, for just this case:
 
 ```ruby
-      class Circle < Ellipse
-         :
-         def setSize(*args)
-            overload(args, Integer) {
-               | r |
-               @radius = r
-               return
-            }
+   class Circle < Ellipse
+     def setSize(*args)
+       overload(args, Integer) { |r|
+         @radius = r
+           return
+       }
 
-            overload_exception(args, Integer, Integer) {
-               | a, b |
-               raise ConstraintError
-            }
-            
-            overload_default args
-         end
-         :
-      end
+       overload_exception(args, Integer, Integer) { |a,b|
+         raise ConstraintError
+       }
+        
+       overload_default args
+     end
+   end
 ```
 
    Of course, there are a number of good choices for handling
-   this... you may still allow #setSize(a, b) if a == b.  The
+   this... you may still allow `#setSize(a, b) if a == b`. The
    important part is that the change in behavior can now be determined
    by code.
 
-Q: But I always write perfect code.  I know what my functions do, and
+Q: But I always write perfect code. I know what my functions do, and
    what they take, and what I'm passing them.
-A: No one writes perfect code.  Additionally, not all environments are
-   as controlled as yours may be.  Especially in a networked
+A: No one writes perfect code. Additionally, not all environments are
+   as controlled as yours may be. Especially in a networked
    environment when someone may be invoking a method remotely, you
    can't depend on calling code not to be malicious.
 
@@ -329,7 +325,7 @@ A: Mephle is a soon-to-be-released network-transparent persistant
    (http://unity-project.sf.net/). It will be on the RAA when
    released.
 
-M: The RAA is long dead, and the SF link looks like a blank project.
+DJB: The RAA is long dead of course, and the SF link looks like a blank project.
    As for Mephle, I don't think it was ever released and I'm not sure
    what Unity is, unless it's a reference to what is now known as Unity
    MLAPI, the networking library behind Unity3d.
@@ -351,7 +347,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 
-## Future Plans
+## Future Plans (obsolete)
 There's some odd C code that is causing a couple of warnings, but it
 does not appear to be harmful. I want to clean this code up eventually.
 
