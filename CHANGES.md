@@ -1,17 +1,17 @@
-== 2.0.7 - 1-Sep-2011
+## 2.0.7 - 1-Sep-2011
 * Code reorganized, Rakefile added, CHANGES file added.
 * Updated gemspec. Removed old has_rdoc call, added license.
 * Fixes for 1.9.x. Still some warnings but harmless.
 * Added a StrongTyping::VERSION constant.
 
-== 2.0.6b
+## 2.0.6b
 * Bugfix: Shouldn't get "too many arguments" on gcc any more.
 
-== 2.0.6a
+## 2.0.6a
 * Bugfix: Portability issues (zero-sized arrays and UNUSED for non-GNU
   platforms) fixed.
    
-== 2.0.6
+## 2.0.6
 * Bugfix: Types given after lists of types were not being checked, as in
   the following:
    
@@ -19,31 +19,31 @@
    
   Before, 'd' could be any type and pass; now this is fixed.
    
-== 2.0.5
+## 2.0.5
 * Bugfix: overload "No matching template" was broken, and I didn't notice.
 * Bugfix: get_arg_types fixed for no arguments; now returns []
   in the right places for both overload() and expect().
 * Mod: Should compile without warnings with -W -Wall, at least on gcc.
 * Mod: Added unit tests.
    
-== 2.0.4
+## 2.0.4
 * Bugfix: Optional arguments are now handled correctly when doing get_arg_types.
    
-== 2.0.3
+## 2.0.3
 * It's a bit of a hack, but overload_default's "No matching
   template" error now displays the given types, which makes
   debugging a lot easier.
    
-== 2.0.2
+## 2.0.2
 * Change Object#type to Object#class for conformance with Ruby 1.8.
 * Bugfix: overload() range check that caused a segfault on some systems.
 * Bugfix: verify_args_for() should work now.
      
-== 2.0.1
+## 2.0.1
 * Bugfix: overload() blocks with one parameter now receive the parameter
   instead of an array.
    
-== 2.0
+## 2.0
 * Rewritten in C for speed.
 * As in 1.0.1, expect (and overload, etc) take arrays of classes/modules
 * overload_error is deprecated (but still available) in favor of overload_default
@@ -51,8 +51,8 @@
   for invalid cases where a specific exception should be thrown
 * More on "duck typing" in the FAQ
      
-== 1.0.1 - [Not officially released]
+## 1.0.1 - [Not officially released]
 * Added support for arrays of types to expect(), as in expect(a, [Integer, NilClass])
 
-== 1.0
+## 1.0
 * First release

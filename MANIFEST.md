@@ -1,7 +1,7 @@
-CHANGES
+CHANGES.md
 LGPL
-MANIFEST
-README
+MANIFEST.md
+README.md
 Rakefile
 strongtyping.gemspec
 ext/extconf.rb
