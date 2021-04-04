@@ -1,3 +1,7 @@
+# Disclaimer
+Most of this document was written by Ryan Pavlik, including the Q&A below.
+It does not necessarily reflect my own opinions. I am just the maintainer.
+
 ## Description
 The strongtyping library is a provides a convenient way for Ruby methods
 to check parameter types, and also dynamically query them. In addition to
