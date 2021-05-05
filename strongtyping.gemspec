@@ -13,7 +13,15 @@ Gem::Specification.new do |spec|
   spec.extensions = ['ext/extconf.rb']
 
   spec.extra_rdoc_files  = ['LGPL', 'CHANGES.md', 'README.md', 'MANIFEST.md']
-  spec.rubyforge_project = 'shards'
+
+  spec.metadata = {
+    'homepage_uri'      => 'https://github.com/djberg96/strongtyping',
+    'bug_tracker_uri'   => 'https://github.com/djberg96/strongtyping/issues',
+    'changelog_uri'     => 'https://github.com/djberg96/strongtyping/blob/main/CHANGES.md',
+    'documentation_uri' => 'https://github.com/djberg96/strongtyping/wiki',
+    'source_code_uri'   => 'https://github.com/djberg96/strongtyping',
+    'wiki_uri'          => 'https://github.com/djberg96/strongtyping/wiki'
+  }
 
   spec.description = %Q{
     The strongtyping gem is a Ruby library that provides type checking and
