@@ -1,4 +1,5 @@
 * CHANGES.md
+* Gemfile
 * LGPL
 * MANIFEST.md
 * README.md
