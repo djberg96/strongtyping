@@ -27,7 +27,7 @@ namespace 'gem' do
   desc 'Create the strongtyping gem'
   task :create => [:clean] do
     Dir["*.gem"].each{ |f| File.delete(f) } # Clean first
-    spec = eval(IO.read('strongtyping.gemspec'))
+    spec = Gem::Specification.load('strongtyping.gemspec')
     Gem::Builder.new(spec).build
   end
 
