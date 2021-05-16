@@ -14,6 +14,9 @@ Gem::Specification.new do |spec|
 
   spec.extra_rdoc_files  = ['LGPL', 'CHANGES.md', 'README.md', 'MANIFEST.md']
 
+  spec.add_development_dependency('rake')
+  spec.add_development_dependency('test-unit', '~> 3.4')
+
   spec.metadata = {
     'homepage_uri'      => 'https://github.com/djberg96/strongtyping',
     'bug_tracker_uri'   => 'https://github.com/djberg96/strongtyping/issues',
