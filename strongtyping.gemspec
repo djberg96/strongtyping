@@ -18,12 +18,13 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('test-unit', '~> 3.4')
 
   spec.metadata = {
-    'homepage_uri'      => 'https://github.com/djberg96/strongtyping',
-    'bug_tracker_uri'   => 'https://github.com/djberg96/strongtyping/issues',
-    'changelog_uri'     => 'https://github.com/djberg96/strongtyping/blob/main/CHANGES.md',
-    'documentation_uri' => 'https://github.com/djberg96/strongtyping/wiki',
-    'source_code_uri'   => 'https://github.com/djberg96/strongtyping',
-    'wiki_uri'          => 'https://github.com/djberg96/strongtyping/wiki'
+    'homepage_uri'          => 'https://github.com/djberg96/strongtyping',
+    'bug_tracker_uri'       => 'https://github.com/djberg96/strongtyping/issues',
+    'changelog_uri'         => 'https://github.com/djberg96/strongtyping/blob/main/CHANGES.md',
+    'documentation_uri'     => 'https://github.com/djberg96/strongtyping/wiki',
+    'source_code_uri'       => 'https://github.com/djberg96/strongtyping',
+    'wiki_uri'              => 'https://github.com/djberg96/strongtyping/wiki',
+    'rubygems_mfa_required' => 'true'
   }
 
   spec.description = %Q{
