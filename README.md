@@ -11,6 +11,10 @@ a number of different templates.
 ## Installation
 `gem install strongtyping`
 
+## Installing the Trusted Cert
+
+`gem cert --add <(curl -Ls https://raw.githubusercontent.com/djberg96/strongtyping/main/certs/djberg96_pub.pem)`
+
 ## Synopsis
 Let's say you have the following function:
 
