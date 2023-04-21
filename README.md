@@ -2,6 +2,10 @@
 Most of this document was written by Ryan Pavlik, including the Q&A below.
 It does not necessarily reflect my own opinions. I am just the maintainer.
 
+In addition, I consider this library obsolete, and have decided to archive
+it. Please see more modern options in the "See Also" section below, and
+use one of them instead.
+
 ## Description
 The strongtyping library is a provides a convenient way for Ruby methods
 to check parameter types, and also dynamically query them. In addition to
@@ -351,12 +355,13 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 
-## Future Plans (obsolete)
-There's some odd C code that is causing a couple of warnings, but it
-does not appear to be harmful. I want to clean this code up eventually.
+## Future Plans
+None. See the Disclaimer above.
 
 ## See Also
-The Crystal programming language.
+The [Crystal](https://crystal-lang.org/) programming language.
+[Sorbet](https://sorbet.org/), a type checker for Ruby.
+[RBS](https://github.com/ruby/rbs), a type annotation system for Ruby.
 
 ## Authors
 * Ryan Pavlik (original author)
