@@ -359,9 +359,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
 None. See the Disclaimer above.
 
 ## See Also
-The [Crystal](https://crystal-lang.org/) programming language.
-[Sorbet](https://sorbet.org/), a type checker for Ruby.
-[RBS](https://github.com/ruby/rbs), a type annotation system for Ruby.
+
+* The [Crystal](https://crystal-lang.org/) programming language.
+* [Sorbet](https://sorbet.org/), a type checker for Ruby.
+* [RBS](https://github.com/ruby/rbs), a type annotation system for Ruby.
 
 ## Authors
 * Ryan Pavlik (original author)
